@@ -1,0 +1,20 @@
+# Optional local development database. Do not use these credentials in production.
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nexora_leaderboard
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nexora_local_demo
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - nexora_leaderboard_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d nexora_leaderboard"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  nexora_leaderboard_data:

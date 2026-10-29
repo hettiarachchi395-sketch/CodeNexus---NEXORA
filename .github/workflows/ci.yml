@@ -1,0 +1,22 @@
+name: Test and build
+on:
+  push:
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install API packages
+        run: npm install --prefix backend
+      - name: Run backend unit tests
+        run: npm test --prefix backend
+      - name: Check backend syntax
+        run: node --check backend/src/server.js
+      - name: Install web packages
+        run: npm install --prefix frontend
+      - name: Build React application
+        run: npm run build --prefix frontend
