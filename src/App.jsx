@@ -1,3 +1,4 @@
+
  import { Navigate, useNavigate } from "react-router-dom";
  import { usePersist } from "./app/storage.js";
  import AppRoutes from "./app/AppRoutes.jsx";
@@ -94,5 +95,3 @@
      />
    );
  }
- 
- 
