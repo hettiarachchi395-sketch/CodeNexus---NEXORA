@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/nexora}
+    username: ${DB_USER:nexora}
+    password: ${DB_PASSWORD:nexora_demo}
+  jpa:
+    hibernate:
+      ddl-auto: update # demo only; use Flyway migrations in production
+    open-in-view: false
+  sql:
+    init:
+      mode: never
+server:
+  port: 8080
